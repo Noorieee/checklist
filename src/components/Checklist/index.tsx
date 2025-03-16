@@ -33,6 +33,44 @@ const Checklist = () => {
         }
     }
 
+    const moveItem = (index: number, direction: "up" | "down") => {
+        let newIndex
+        if(direction === "up") {
+            newIndex = index - 1
+        }else {
+            newIndex = index + 1
+        }
+        
+        const newList = [...list]
+
+        const selectedItem = newList[index]
+        const newPosition = newList[newIndex]
+        newList[index] = newPosition
+        newList[newIndex] = selectedItem
+        setList(newList)
+    }
+    
+    const renderButtons = (index: number) => {
+        if(index === 0 && list.length > 1) {
+            return (
+                <button onClick={() => {moveItem(index, 'down')}}>Down</button>
+            )
+        } else if (index === list.length - 1 && list.length > 1) {
+            return (
+                <button onClick={() => {moveItem(index, 'up')}}>Up</button>
+            )
+        } else if (list.length === 1) {
+            return
+        } else {
+            return (
+                <>
+                    <button onClick={() => {moveItem(index, 'down')}}>Down</button>
+                    <button onClick={() => {moveItem(index, 'up')}}>Up</button>
+                </>
+            )
+        }
+    }
+
     return (
         <div>
             <h1>hello</h1>
@@ -42,6 +80,7 @@ const Checklist = () => {
                 <div key={`${item.label}-${index}`}>
                     <ChecklistItem label={item.label} checked={item.checked}/>
                     <button onClick={() => {removeItem(index)}}>Delete</button>
+                    {renderButtons(index)}
                 </div>    
             ))}
         </div>
