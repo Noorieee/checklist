@@ -79,7 +79,7 @@ const Checklist = () => {
             <input 
                 value={inputValue} 
                 onKeyDown={(event) => handleOnKeyDown(event)} 
-                onChange={(event) => { setInputValue(event.target.value) }} 
+                onChange={(event) => {setInputValue(event.target.value)}} 
                 type="text" 
             />
             <button onClick={() => {addItem()}}>Add</button>
