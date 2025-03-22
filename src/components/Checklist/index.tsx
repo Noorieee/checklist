@@ -73,6 +73,12 @@ const Checklist = () => {
         }
     }
 
+    const checkedBox = (index: number, checked: boolean) => {
+        const newList = [...list]
+        newList[index].checked = checked
+        setList(newList)
+    }
+
     return (
         <div>
             <h1>hello</h1>
@@ -85,7 +91,8 @@ const Checklist = () => {
             <button onClick={() => {addItem()}}>Add</button>
             {list.map((item, index) => (
                 <div key={`${item.label}-${index}`}>
-                    <ChecklistItem label={item.label} checked={item.checked}/>
+                    <input type="checkbox" checked={item.checked} onChange={(event) => {checkedBox(index, event.target.checked)}}></input>
+                    <ChecklistItem label={item.label} checked={item.checked} className={item.checked ? 'checked' : ''}/>
                     <button onClick={() => {removeItem(index)}}>Delete</button>
                     {renderButtons(index)}
                 </div>    

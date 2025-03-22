@@ -3,11 +3,14 @@ import React from "react"
 export interface ChecklistItemProps {
     label: string
     checked: boolean
+    className?: string
 }
 
-const ChecklistItem = ({label, checked}:ChecklistItemProps) => {
+const ChecklistItem = ({label, checked, className}:ChecklistItemProps) => {
     return (
-        <p>{label}</p>
+        <p className={className}>
+            {label}
+        </p>
     )
 }
 
