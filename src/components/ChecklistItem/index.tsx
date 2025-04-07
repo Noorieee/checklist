@@ -5,9 +5,11 @@ export interface ChecklistItemProps {
     checked: boolean
 }
 
-const ChecklistItem = ({label, checked}:ChecklistItemProps) => {
+const ChecklistItem = ({label, checked}: ChecklistItemProps) => {
     return (
-        <p>{label}</p>
+        <p className={checked ? 'checked' : ''}>
+            {label}
+        </p>
     )
 }
 
